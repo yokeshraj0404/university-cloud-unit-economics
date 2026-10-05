@@ -7,17 +7,24 @@ import {
   BarChart3, 
   BookOpen, 
   RefreshCw, 
-  ShieldCheck 
+  ShieldCheck,
+  TrendingUp,
+  Upload
 } from 'lucide-react';
-import { SEMESTERS, SYSTEM_FRESHNESS } from '../data/mockData';
+import { SEMESTERS } from '../data/mockData';
 
 export function Navbar({ 
   activeTab, 
   setActiveTab, 
   activeSemester, 
   setActiveSemester, 
-  onResetRules 
+  onResetRules,
+  freshnessData,
+  onOpenIngestionModal
 }) {
+  const telemStatus = freshnessData?.telemetry?.status || 'FRESH';
+  const lastTelemSync = freshnessData?.telemetry?.lastSyncDisplay || 'Just now';
+
   return (
     <header className="border-b border-gray-800 bg-[#0b0f19]/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -39,10 +46,10 @@ export function Navbar({
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1 bg-gray-900/80 p-1 rounded-xl border border-gray-800">
+        <nav className="flex items-center gap-1 bg-gray-900/80 p-1 rounded-xl border border-gray-800 overflow-x-auto">
           <button
             onClick={() => setActiveTab('finops')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'finops' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'finops' ? 'active' : ''}`}
           >
             <Building2 className="w-4 h-4" />
             <span>FinOps Admin</span>
@@ -50,15 +57,23 @@ export function Navbar({
 
           <button
             onClick={() => setActiveTab('professor')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'professor' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'professor' ? 'active' : ''}`}
           >
             <GraduationCap className="w-4 h-4" />
             <span>Course Professor</span>
           </button>
 
           <button
+            onClick={() => setActiveTab('trends')}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'trends' ? 'active' : ''}`}
+          >
+            <TrendingUp className="w-4 h-4" />
+            <span>Trends</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('rules')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'rules' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'rules' ? 'active' : ''}`}
           >
             <Sliders className="w-4 h-4" />
             <span>Rules Config</span>
@@ -66,7 +81,7 @@ export function Navbar({
 
           <button
             onClick={() => setActiveTab('harness')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'harness' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'harness' ? 'active' : ''}`}
           >
             <FlaskConical className="w-4 h-4" />
             <span>Test Harness</span>
@@ -74,7 +89,7 @@ export function Navbar({
 
           <button
             onClick={() => setActiveTab('experiment')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'experiment' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'experiment' ? 'active' : ''}`}
           >
             <BarChart3 className="w-4 h-4" />
             <span>Experiment</span>
@@ -82,21 +97,22 @@ export function Navbar({
 
           <button
             onClick={() => setActiveTab('docs')}
-            className={`tab-btn flex items-center gap-2 ${activeTab === 'docs' ? 'active' : ''}`}
+            className={`tab-btn flex items-center gap-1.5 ${activeTab === 'docs' ? 'active' : ''}`}
           >
             <BookOpen className="w-4 h-4" />
             <span>Docs</span>
           </button>
         </nav>
 
-        {/* Semester Selector & Data Freshness Indicator */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-gray-900 px-3 py-1.5 rounded-lg border border-gray-800">
+        {/* Controls: Semester, Dynamic Freshness, Upload Data */}
+        <div className="flex items-center gap-2">
+          
+          <div className="flex items-center gap-1.5 bg-gray-900 px-3 py-1.5 rounded-lg border border-gray-800">
             <span className="text-xs text-gray-400 font-medium">Semester:</span>
             <select
               value={activeSemester || 'All'}
               onChange={(e) => setActiveSemester(e.target.value === 'All' ? null : e.target.value)}
-              className="bg-transparent text-sm text-white font-semibold focus:outline-none cursor-pointer"
+              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer"
             >
               <option value="All" className="bg-gray-900 text-white">All Semesters</option>
               {SEMESTERS.map(s => (
@@ -105,18 +121,30 @@ export function Navbar({
             </select>
           </div>
 
-          {/* Freshness Badge */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+          {/* Dynamic Freshness Pill */}
+          <div className={`hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold ${
+            telemStatus === 'FRESH' ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-amber-500/10 border-amber-500/30 text-amber-400'
+          }`}>
             <ShieldCheck className="w-4 h-4" />
-            <span>Data Fresh (Sync: 5m ago)</span>
+            <span>{telemStatus} ({lastTelemSync})</span>
           </div>
+
+          {/* Live Ingestion Trigger Button */}
+          <button
+            onClick={onOpenIngestionModal}
+            className="btn btn-primary text-xs py-1.5 px-3 flex items-center gap-1"
+            title="Import Live AWS CUR CSV or Telemetry JSON"
+          >
+            <Upload className="w-3.5 h-3.5" />
+            <span>Import Data</span>
+          </button>
 
           <button
             onClick={onResetRules}
-            title="Reset Default Attribution Rules"
+            title="Reset Default Rules & Data"
             className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 transition"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className="w-3.5 h-3.5" />
           </button>
         </div>
 

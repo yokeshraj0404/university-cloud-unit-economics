@@ -36,7 +36,7 @@ export function ExperimentView({ engineResult }) {
 
         <div className="flex items-center gap-2">
           <span className="badge badge-indigo text-sm py-1.5 px-3">
-            Sample Dataset: $48,500 Cloud Spend
+            Sample Dataset: $69,150 Aggregated Cloud Spend
           </span>
         </div>
       </div>
@@ -48,7 +48,7 @@ export function ExperimentView({ engineResult }) {
         <div className="glass-card p-5 border-l-4 border-l-gray-600">
           <p className="text-xs font-semibold text-gray-400 uppercase">1. Baseline Allocation</p>
           <h3 className="text-3xl font-extrabold text-gray-300 mt-1">{baselinePct}%</h3>
-          <p className="text-xs text-gray-400 mt-1">Raw AWS/GCP Tags Only ($20,750)</p>
+          <p className="text-xs text-gray-400 mt-1">Raw AWS/GCP Tags Only ($29,600)</p>
         </div>
 
         {/* Target */}
@@ -69,7 +69,7 @@ export function ExperimentView({ engineResult }) {
         <div className="glass-card p-5 border-l-4 border-l-indigo-500">
           <p className="text-xs font-semibold text-gray-400 uppercase">Improvement Gain</p>
           <h3 className="text-3xl font-extrabold text-indigo-400 mt-1">+{deltaPct}%</h3>
-          <p className="text-xs text-indigo-300 mt-1">+53.6 percentage point boost</p>
+          <p className="text-xs text-indigo-300 mt-1">+54.9 percentage point boost</p>
         </div>
 
       </div>
@@ -98,33 +98,33 @@ export function ExperimentView({ engineResult }) {
               <tbody className="divide-y divide-gray-800/60 font-mono">
                 <tr className="hover:bg-gray-800/30">
                   <td className="p-2.5 text-gray-200 font-sans font-semibold">CS101 Intro to Cloud</td>
-                  <td className="p-2.5 text-gray-400">$4,250</td>
-                  <td className="p-2.5 text-emerald-400 font-bold">$10,480</td>
-                  <td className="p-2.5 text-right text-emerald-400">+$6,230</td>
+                  <td className="p-2.5 text-gray-400">$8,850</td>
+                  <td className="p-2.5 text-emerald-400 font-bold">$11,480</td>
+                  <td className="p-2.5 text-right text-emerald-400">+$2,630</td>
                 </tr>
                 <tr className="hover:bg-gray-800/30">
                   <td className="p-2.5 text-gray-200 font-sans font-semibold">CS450 Big Data Systems</td>
-                  <td className="p-2.5 text-gray-400">$8,400</td>
-                  <td className="p-2.5 text-emerald-400 font-bold">$19,420</td>
-                  <td className="p-2.5 text-right text-emerald-400">+$11,020</td>
+                  <td className="p-2.5 text-gray-400">$17,500</td>
+                  <td className="p-2.5 text-emerald-400 font-bold">$20,420</td>
+                  <td className="p-2.5 text-right text-emerald-400">+$2,920</td>
                 </tr>
                 <tr className="hover:bg-gray-800/30">
                   <td className="p-2.5 text-gray-200 font-sans font-semibold">AI602 Deep Learning GPU</td>
-                  <td className="p-2.5 text-gray-400">$11,500</td>
-                  <td className="p-2.5 text-emerald-400 font-bold">$26,850</td>
-                  <td className="p-2.5 text-right text-emerald-400">+$15,350</td>
+                  <td className="p-2.5 text-gray-400">$24,300</td>
+                  <td className="p-2.5 text-emerald-400 font-bold">$27,350</td>
+                  <td className="p-2.5 text-right text-emerald-400">+$3,050</td>
                 </tr>
                 <tr className="hover:bg-gray-800/30">
                   <td className="p-2.5 text-gray-200 font-sans font-semibold">BIO301 Bioinformatics</td>
-                  <td className="p-2.5 text-gray-400">$3,800</td>
-                  <td className="p-2.5 text-emerald-400 font-bold">$8,450</td>
-                  <td className="p-2.5 text-right text-emerald-400">+$4,650</td>
+                  <td className="p-2.5 text-gray-400">$8,000</td>
+                  <td className="p-2.5 text-emerald-400 font-bold">$8,300</td>
+                  <td className="p-2.5 text-right text-emerald-400">+$300</td>
                 </tr>
                 <tr className="bg-rose-500/5 hover:bg-rose-500/10">
                   <td className="p-2.5 text-rose-300 font-sans font-bold">Unallocated Black-Hole Spend</td>
-                  <td className="p-2.5 text-rose-400">$27,750 (57.2%)</td>
-                  <td className="p-2.5 text-amber-400 font-bold">$1,750 (3.6%)</td>
-                  <td className="p-2.5 text-right text-emerald-400 font-bold">-$26,000</td>
+                  <td className="p-2.5 text-rose-400">$39,550 (57.2%)</td>
+                  <td className="p-2.5 text-amber-400 font-bold">$1,600 (2.3%)</td>
+                  <td className="p-2.5 text-right text-emerald-400 font-bold">-$37,950</td>
                 </tr>
               </tbody>
             </table>
@@ -135,47 +135,47 @@ export function ExperimentView({ engineResult }) {
         <div className="glass-card p-6">
           <h3 className="font-bold text-base text-white mb-1 flex items-center gap-2">
             <AlertCircle className="w-5 h-5 text-amber-400" />
-            <span>Error Analysis & Remaining Unallocated Gap (3.6%)</span>
+            <span>Error Analysis & Remaining Unallocated Gap (2.3%)</span>
           </h3>
-          <p className="text-xs text-gray-400 mb-4">Root cause decomposition of non-attributed residual cloud costs</p>
+          <p className="text-xs text-gray-400 mb-4">Root cause decomposition of non-attributed residual cloud costs ($1,600 total)</p>
 
           <div className="space-y-3.5">
             <div className="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
               <div className="flex justify-between items-center mb-1">
-                <span className="font-bold text-xs text-amber-300">1. Untagged Orphan EBS Disks & Snapshots</span>
-                <span className="font-mono text-xs text-amber-400 font-bold">2.1% ($1,020)</span>
+                <span className="font-bold text-xs text-amber-300">1. Idle Semester-Break Waste (CUR-1012)</span>
+                <span className="font-mono text-xs text-amber-400 font-bold">1.6% ($1,120)</span>
               </div>
               <p className="text-xs text-gray-400">
-                Detached storage volumes created by students that were not cleaned up upon container termination.
+                Forgotten GPU node `g4dn.2xlarge` left running in January between Fall & Spring terms with 0 active student telemetry sessions.
               </p>
               <div className="text-[11px] text-emerald-400 mt-1 font-semibold">
-                Action: Deploy automated AWS Lambda cleanup script triggered on pod termination.
+                Action: Classified as Idle Waste + Generated FinOps Cleanup Ticket #FIN-882.
               </div>
             </div>
 
             <div className="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
               <div className="flex justify-between items-center mb-1">
-                <span className="font-bold text-xs text-indigo-300">2. Telemetry Ingestion Timing Window Gap</span>
-                <span className="font-mono text-xs text-indigo-400 font-bold">1.0% ($480)</span>
+                <span className="font-bold text-xs text-indigo-300">2. Untagged Orphan EBS Disk Storage (CUR-1013)</span>
+                <span className="font-mono text-xs text-indigo-400 font-bold">0.7% ($480)</span>
               </div>
               <p className="text-xs text-gray-400">
-                Late-arriving session logs spanning month-end cutoffs handled by Provisional Reconciliation Buffer.
+                Detached `gp3` storage disk created by student container without owner or course tags.
               </p>
               <div className="text-[11px] text-emerald-400 mt-1 font-semibold">
-                Action: Extend month-end reconciliation window by 48 hours before final reporting lock.
+                Action: Automated AWS Lambda disk deletion policy on pod termination.
               </div>
             </div>
 
             <div className="p-3.5 rounded-xl bg-gray-900/80 border border-gray-800">
               <div className="flex justify-between items-center mb-1">
-                <span className="font-bold text-xs text-purple-300">3. System Noise & Elastic IP Overhead</span>
-                <span className="font-mono text-xs text-purple-400 font-bold">0.5% ($250)</span>
+                <span className="font-bold text-xs text-purple-300">3. Control-Plane System Noise</span>
+                <span className="font-mono text-xs text-purple-400 font-bold">0.0% ($0.00)</span>
               </div>
               <p className="text-xs text-gray-400">
-                Shared control-plane cloud infrastructure fees not directly bound to student container runtime.
+                All remaining control plane and telemetry fees fully reconciled.
               </p>
               <div className="text-[11px] text-emerald-400 mt-1 font-semibold">
-                Action: Classified cleanly as IT Infrastructure Department Overhead.
+                Action: Reconciled 100% to exact dollar sum ($67,550 + $1,600 = $69,150).
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@ export function ExperimentView({ engineResult }) {
               <span className="badge badge-emerald">5/5 Rating</span>
             </div>
             <p className="text-xs text-gray-300 italic">
-              "Finally we can connect monthly $50k+ cloud invoices directly to specific course budgets and student enrollments. The 96.4% attribution rate gives us full financial accountability."
+              "Finally we can connect monthly $69k+ cloud invoices directly to specific course budgets and student enrollments. The 97.7% attribution rate gives us full financial accountability."
             </p>
           </div>
 

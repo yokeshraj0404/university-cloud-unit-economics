@@ -9,11 +9,13 @@ import {
   Server, 
   Layers, 
   Sparkles,
-  Info
+  ShieldCheck,
+  Upload,
+  RefreshCw
 } from 'lucide-react';
 import { COURSES } from '../data/mockData';
 
-export function FinOpsView({ engineResult, onInspectRecord }) {
+export function FinOpsView({ engineResult, freshnessData, onInspectRecord, onOpenIngestionModal }) {
   const { 
     totalSpend, 
     totalAttributedSpend, 
@@ -44,6 +46,37 @@ export function FinOpsView({ engineResult, onInspectRecord }) {
   return (
     <div className="space-y-6">
       
+      {/* Top Dynamic Pipeline Freshness & Ingestion Banner */}
+      <div className="glass-card p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-l-4 border-l-emerald-500">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <ShieldCheck className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-sm text-white">Pipeline Sync State:</span>
+              <span className={`badge ${freshnessData?.cur?.badgeClass || 'badge-emerald'}`}>
+                CUR {freshnessData?.cur?.status} ({freshnessData?.cur?.lastSyncDisplay})
+              </span>
+              <span className={`badge ${freshnessData?.telemetry?.badgeClass || 'badge-emerald'}`}>
+                Telemetry {freshnessData?.telemetry?.status} ({freshnessData?.telemetry?.lastSyncDisplay})
+              </span>
+            </div>
+            <p className="text-xs text-gray-400 mt-0.5">
+              Tag Taxonomy Health Grade: <strong className="text-emerald-400 font-bold">{freshnessData?.tagCoverage?.healthGrade} ({freshnessData?.tagCoverage?.coveragePct}% Coverage)</strong> &bull; {freshnessData?.cur?.recordCount} CUR Line Items Processed
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={onOpenIngestionModal}
+          className="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5"
+        >
+          <Upload className="w-3.5 h-3.5 text-indigo-400" />
+          <span>Upload Custom CUR / Telemetry Data</span>
+        </button>
+      </div>
+
       {/* KPI Cards Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         
@@ -226,7 +259,7 @@ export function FinOpsView({ engineResult, onInspectRecord }) {
               <span>FinOps Insight</span>
             </div>
             <p className="text-purple-200/80">
-              SageMaker GPU nodes represent 48.6% of overall infrastructure cost. Telemetry ratio rule ensures 100% fair allocation to AI602.
+              SageMaker GPU nodes represent 35.1% of overall infrastructure cost. Telemetry ratio rule ensures 100% fair allocation to AI602.
             </p>
           </div>
         </div>

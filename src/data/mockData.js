@@ -10,7 +10,7 @@ export const COURSES = [
     department: 'Computer Science',
     leadProfessor: 'Dr. Sarah Jenkins',
     enrollment: { 'Fall 2025': 180, 'Spring 2026': 195 },
-    budget: { 'Fall 2025': 8000, 'Spring 2026': 9000 },
+    budget: { 'Fall 2025': 10000, 'Spring 2026': 11000 },
     labExercises: [
       { id: 'LAB_EX_1', name: 'Lab 1: AWS S3 & Static Web Hosting', targetHours: 4 },
       { id: 'LAB_EX_2', name: 'Lab 2: EC2 Autoscaling & Elastic Load Balancer', targetHours: 8 },
@@ -24,7 +24,7 @@ export const COURSES = [
     department: 'Computer Science',
     leadProfessor: 'Prof. Marcus Vance',
     enrollment: { 'Fall 2025': 65, 'Spring 2026': 70 },
-    budget: { 'Fall 2025': 16000, 'Spring 2026': 18000 },
+    budget: { 'Fall 2025': 20000, 'Spring 2026': 22000 },
     labExercises: [
       { id: 'LAB_EX_1', name: 'Lab 1: Hadoop HDFS Cluster Setup', targetHours: 12 },
       { id: 'LAB_EX_2', name: 'Lab 2: Apache Spark Distributed Analytics', targetHours: 20 },
@@ -38,7 +38,7 @@ export const COURSES = [
     department: 'Artificial Intelligence Inst.',
     leadProfessor: 'Dr. Elena Rostova',
     enrollment: { 'Fall 2025': 40, 'Spring 2026': 45 },
-    budget: { 'Fall 2025': 22000, 'Spring 2026': 25000 },
+    budget: { 'Fall 2025': 28000, 'Spring 2026': 30000 },
     labExercises: [
       { id: 'LAB_EX_1', name: 'Lab 1: PyTorch CNN Model Training on A100 GPUs', targetHours: 25 },
       { id: 'LAB_EX_2', name: 'Lab 2: Transformer LLM Fine-Tuning (SageMaker)', targetHours: 35 },
@@ -103,7 +103,7 @@ export const INITIAL_RULES = [
   }
 ];
 
-// Raw Cloud Billing CUR Records ($48,500 total spend)
+// Raw Cloud Billing CUR Records ($69,150 total aggregated spend)
 export const RAW_BILLING_EXPORTS = [
   {
     id: 'CUR-1001',
@@ -338,23 +338,3 @@ export const USAGE_TELEMETRY = [
     clusterRef: 'eks-cluster-shared-lab-01'
   }
 ];
-
-export const SYSTEM_FRESHNESS = {
-  curExport: {
-    status: 'FRESH',
-    lastSync: '2026-09-09 09:00:00 UTC',
-    provider: 'AWS Cost & Usage Report (CUR)',
-    recordCount: 13
-  },
-  telemetry: {
-    status: 'FRESH',
-    lastSync: '2026-09-09 11:10:00 UTC',
-    provider: 'CloudLab JupyterHub & K8s Event Collector',
-    sessionCount: 1240
-  },
-  tagTaxonomy: {
-    status: 'OPTIMIZED',
-    lastSync: '2026-09-09 11:15:00 UTC',
-    healthScore: '96.4%'
-  }
-};

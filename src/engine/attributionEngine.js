@@ -13,7 +13,7 @@ export function normalizeTags(rawTags = {}) {
     ['courseid', 'course_id', 'course', 'courseref', 'subject'].includes(k.toLowerCase())
   );
   if (courseKey) {
-    normalized.courseId = rawTags[courseKey].toUpperCase();
+    normalized.courseId = String(rawTags[courseKey]).trim().toUpperCase();
   }
 
   // Case-insensitive key lookup for Semester
@@ -21,7 +21,7 @@ export function normalizeTags(rawTags = {}) {
     ['semester', 'sem', 'term', 'academic_term'].includes(k.toLowerCase())
   );
   if (semKey) {
-    normalized.semester = rawTags[semKey];
+    normalized.semester = String(rawTags[semKey]).trim();
   }
 
   return normalized;
